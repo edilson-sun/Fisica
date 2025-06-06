@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Física</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="admin-header">
+        <div class="header-content">
+            <h1><i class="fas fa-cogs"></i> Panel de Administración</h1>
+            <div id="user-nav" class="user-nav">
+                <span id="admin-greeting" class="user-greeting"></span>
+                <div class="nav-buttons">
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-gamepad"></i> Volver al juego
+                    </a>
+                    <a href="#" id="admin-logout" class="btn btn-logout">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <nav>
+                <ul>
+                    <li class="active"><a href="#exercise-management"><i class="fas fa-tasks"></i> Gestión de Ejercicios</a></li>
+                    <li><a href="#user-stats-section"><i class="fas fa-chart-bar"></i> Estadísticas</a></li>
+                    <li><a href="#user-progress"><i class="fas fa-user-graduate"></i> Progreso de Usuarios</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <section id="exercise-management" class="admin-section">
+                <h2><i class="fas fa-tasks"></i> Gestión de Contenido</h2>
+                
+                <div class="card">
+                    <h3>Agregar nuevo ejercicio</h3>
+                    <form id="add-exercise-form" class="exercise-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="exercise-level">Nivel:</label>
+                                <select id="exercise-level" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione un nivel</option>
+                                    <option value="facil">Fácil</option>
+                                    <option value="intermedio">Intermedio</option>
+                                    <option value="dificil">Difícil</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exercise-question">Pregunta:</label>
+                                <textarea id="exercise-question" class="form-control" rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exercise-answer">Respuesta correcta:</label>
+                                <input type="text" id="exercise-answer" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exercise-explanation">Explicación detallada:</label>
+                                <textarea id="exercise-explanation" class="form-control" rows="4" required></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Agregar ejercicio
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-broom"></i> Limpiar formulario
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="user-stats-section" class="admin-section">
+                <h2><i class="fas fa-chart-bar"></i> Estadísticas Generales</h2>
+                <div class="card">
+                    <div id="user-stats" class="stats-grid">
+                        <div class="stat-card">
+                            <h4>Usuarios registrados</h4>
+                            <div class="stat-value" id="total-users">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Ejercicios totales</h4>
+                            <div class="stat-value" id="total-exercises">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Promedio de aciertos</h4>
+                            <div class="stat-value" id="average-score">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="user-progress" class="admin-section">
+                <h2><i class="fas fa-user-graduate"></i> Ejercicios Resueltos por Usuarios</h2>
+                <div class="card">
+                    <div class="section-header">
+                        <div class="search-box">
+                            <input type="text" id="user-search" placeholder="Buscar usuario..." class="form-control">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="filter-controls">
+                            <label for="level-filter">Filtrar por nivel:</label>
+                            <select id="level-filter" class="form-control">
+                                <option value="all">Todos los niveles</option>
+                                <option value="facil">Fácil</option>
+                                <option value="intermedio">Intermedio</option>
+                                <option value="dificil">Difícil</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="exercise-stats" class="user-stats-container">
+                        <div class="loading-indicator">
+                            <div class="spinner"></div>
+                            <p>Cargando datos de usuarios...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pagination-controls">
+                        <button id="prev-page" class="btn btn-secondary" disabled>
+                            <i class="fas fa-chevron-left"></i> Anterior
+                        </button>
+                        <span id="page-info">Página 1 de 1</span>
+                        <button id="next-page" class="btn btn-secondary" disabled>
+                            Siguiente <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div id="exercise-stats" class="user-stats-container"></div>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
